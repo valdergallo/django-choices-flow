@@ -1,7 +1,9 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from django.test import TestCase
 from django_choices_flow import Choices
-from django_choices_flow.forms import flow_validator
+from django_choices_flow.models import FlowIntegerField
 from django.db import models
 
 
@@ -19,9 +21,7 @@ class MyChoices(Choices):
 
 
 class MyModelInvoide(models.Model):
-    status = models.IntegerField(choices=MyChoices,
-                                 validators=[flow_validator],
-                                 default=MyChoices.NEW)
+    status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW)
     number = models.IntegerField()
 
     def __unicode__(self):
@@ -29,7 +29,7 @@ class MyModelInvoide(models.Model):
 
     def save(self):
         self.full_clean()
-        return 1
+        return True
 
 
 class ModelChoiceFlowTest(TestCase):
@@ -37,6 +37,5 @@ class ModelChoiceFlowTest(TestCase):
     def test_create_invoice(self):
         invoice = MyModelInvoide()
         invoice.number = 1234
-        invoice.save()
 
-        self.assertEqual(invoice.save(), 1)
+        self.assertTrue(invoice.save())
