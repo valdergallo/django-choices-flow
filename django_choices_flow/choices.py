@@ -30,27 +30,27 @@ class MetaChoice(type):
 
         cls._hash = dict(cls._data)
 
-    def __iter__(self, *args, **kwds):
-        for value, data in self._data:
+    def __iter__(cls, *args, **kwds):
+        for value, data in cls._data:
             yield (value, data)
 
-    def __len__(self, *args, **kwds):
-        return len(self._data)
+    def __len__(cls, *args, **kwds):
+        return len(cls._data)
 
-    def __repr__(self, *args, **kargs):
-        return str(list(self._data))
+    def __repr__(cls, *args, **kargs):
+        return str(list(cls._data))
 
-    def get_value(self, key):
-        return self._hash.get(key)
+    def get_value(cls, key):
+        return cls._hash.get(key)
 
-    def validate(self, status, new_status):
+    def validate(cls, status, new_status):
         if not status:
             return new_status
 
         if unicode(status) == unicode(new_status):
             return new_status
 
-        if not self._rules.get(status) or new_status not in self._rules.get(status):
+        if not cls._rules.get(status) or new_status not in cls._rules.get(status):
             return False
 
         return new_status
