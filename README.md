@@ -28,7 +28,7 @@ class MyChoices(Choices):
 
 class Invoces(models.Model):
 	"""
-	To use one choices
+	To use only choices
 	"""
     number = models.IntegerField()
     status = models.IntegerField(choices=MyChoices, default=MyChoices.NEW)
