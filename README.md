@@ -10,6 +10,8 @@ Usage
 ```python
 from django.db import models
 from django_choices_flow import Choices
+from django_choices_flow.models import FlowIntegerField
+
 
 class MyChoices(Choices):
     NEW = 1, 'New content' # 'New content' is the display text
@@ -25,10 +27,26 @@ class MyChoices(Choices):
 
 
 class Invoces(models.Model):
+	"""
+	To use one choices
+	"""
     number = models.IntegerField()
-    status = models.IntegerField(choices=MyChoices)
+    status = models.IntegerField(choices=MyChoices, default=MyChoices.NEW)
 
     def __unicode__(self):
         return self.number
+        
+
+class FlowInvoice(models.Model):
+	"""
+	To validate flow in choices
+	"""
+
+	number = models.IntegerField()
+	status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW)
+	
+	def __unicode__(self):
+        return self.number
+
 ```
 
