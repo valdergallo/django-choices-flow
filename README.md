@@ -50,5 +50,20 @@ class FlowInvoice(models.Model):
 
 ```
 
+Developer
+---------
+
+```bash
+# download code
+git clone git@github.com:valdergallo/django-choice-flow.git
+
+# install developer packages
+make
+
+# test project
+make test
+```
+
+
 ----------------
 License type: FREEBSD
