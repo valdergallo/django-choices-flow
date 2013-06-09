@@ -19,7 +19,7 @@ class MyChoices(Choices):
 class TestChoices(TestCase):
 
     def setUp(self):
-        self.choices = MyChoices()
+        self.choices = MyChoices
 
     def test_key_valeu(self):
         self.assertEqual(self.choices.NEW, 1)

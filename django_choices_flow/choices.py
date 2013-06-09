@@ -30,6 +30,24 @@ class MetaChoice(type):
 
         cls._hash = dict(cls._data)
 
+    def __iter__(self, *args, **kwds):
+        for value, data in self._data:
+            yield (value, data)
+
+    def __len__(self, *args, **kwds):
+        return len(self._data)
+
+    def __repr__(self, *args, **kargs):
+        return str(list(self._data))
+
+    def get_value(self, key):
+        return self._hash.get(key)
+
+    def validate(self, status, new_status):
+        if not self._rules.get(status) or new_status not in self._rules.get(status):
+            return False
+        return new_status
+
 
 class Choices(object):
     """
@@ -49,21 +67,3 @@ class Choices(object):
 
     """
     __metaclass__ = MetaChoice
-
-    def __iter__(self):
-        for value, data in self._data:
-            yield (value, data)
-
-    def __repr__(self):
-        return str(list(self._data))
-
-    def __len__(self):
-        return len(self._data)
-
-    def get_value(self, key):
-        return self._hash.get(key)
-
-    def validate(self, status, new_status):
-        if not self._rules.get(status) or new_status not in self._rules.get(status):
-            return False
-        return new_status
