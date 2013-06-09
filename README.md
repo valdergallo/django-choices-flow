@@ -65,7 +65,10 @@ make test
 ```
 
 
-----------------
-License type: FREEBSD
-Coverage: 82%
-Version: 0.5.9
+------------------------
+> **License type:** FREEBSD
+
+> **Coverage:** 82%
+
+> **Version:** 0.5.9
+ 
