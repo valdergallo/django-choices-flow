@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -44,8 +47,15 @@ class MetaChoice(type):
         return self._hash.get(key)
 
     def validate(self, status, new_status):
+        if not status:
+            return new_status
+
+        if unicode(status) == unicode(new_status):
+            return new_status
+
         if not self._rules.get(status) or new_status not in self._rules.get(status):
             return False
+
         return new_status
 
 
