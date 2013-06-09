@@ -50,3 +50,8 @@ class FlowInvoice(models.Model):
 
 ```
 
+LICENSE
+=======
+
+FreeBSD
+
