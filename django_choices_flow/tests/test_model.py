@@ -10,7 +10,6 @@ class ModelChoiceFlowTest(TestCase):
 
     def test_create_invoice(self):
         invoice = MyModelInvoide()
-        # invoice.status = MyChoices.WAIT
         invoice.number = 1234
         invoice.full_clean()
         invoice.save()
@@ -34,5 +33,6 @@ class ModelChoiceFlowTest(TestCase):
         invoice.status = MyChoices.WAIT
 
         with self.assertRaises(exceptions.ValidationError):
+            # Raise ValidationError when validate status
             invoice.full_clean()
             invoice.save()
