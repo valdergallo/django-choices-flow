@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # Django settings for example project.
+import os
+import sys
+
+django_choices_flow_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
+sys.path.append(django_choices_flow_path)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -127,6 +132,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'example',
     'django_coverage',
     'django_nose',
     'django_choices_flow',
@@ -162,9 +168,10 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 # Tell nose to measure coverage on the 'foo' and 'bar' apps
 NOSE_ARGS = [
-# '--with-coverage',
+    # '--with-coverage',
     '--cover-html',
     '--cover-package=django_choices_flow',
     '--cover-tests',
@@ -174,4 +181,3 @@ NOSE_ARGS = [
 # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = '/tmp/invest-messages'  # change this to a proper location
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-

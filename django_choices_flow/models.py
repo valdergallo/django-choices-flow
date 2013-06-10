@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.db import models
+import sys
+
 from django.core import exceptions
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -15,16 +17,13 @@ class FlowCharField(models.CharField):
             self.max_length = max([i[0] for i in self.choices])
 
     def validate(self, value, model_instance):
-        """
-        Validates value and throws ValidationError. Subclasses should override
-        this to provide validation logic.
-        """
-        super(FlowCharField, self).validate(value, model_instance)
         # validate choice flow
-        if self.choices.validate(getattr(model_instance, self.name), value):
-            return
-        else:
-            raise exceptions.ValidationError(_('%s Invalid Choice Flow' % value))
+        if model_instance.id:
+            db_value = model_instance.__class__.objects.get(id=model_instance.id)
+            if not self.choices.validate(getattr(db_value, self.name), value):
+                raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % value))
+
+        super(FlowIntegerField, self).validate(value, model_instance)
 
 
 class FlowIntegerField(models.IntegerField):
@@ -33,13 +32,10 @@ class FlowIntegerField(models.IntegerField):
         self.db_index = True
 
     def validate(self, value, model_instance):
-        """
-        Validates value and throws ValidationError. Subclasses should override
-        this to provide validation logic.
-        """
-        super(FlowIntegerField, self).validate(value, model_instance)
         # validate choice flow
-        if self.choices.validate(getattr(model_instance, self.name), value):
-            return
-        else:
-            raise exceptions.ValidationError(_('%s Invalid Choice Flow' % value))
+        if model_instance.id:
+            db_value = model_instance.__class__.objects.get(id=model_instance.id)
+            if not self.choices.validate(getattr(db_value, self.name), value):
+                raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % value))
+
+        super(FlowIntegerField, self).validate(value, model_instance)
