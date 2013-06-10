@@ -14,4 +14,4 @@ env:
   - DJANGO=1.5.1
 
 install:
-  - pip install -q Django==$DJANGO -r example/requirements.txt
+  - pip install -q Django==$DJANGO -r example/requirements.txt --use-mirrors
