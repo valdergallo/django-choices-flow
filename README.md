@@ -35,7 +35,7 @@ class Invoces(models.Model):
 
     def __unicode__(self):
         return self.number
-        
+
 
 class FlowInvoice(models.Model):
 	"""
@@ -44,7 +44,7 @@ class FlowInvoice(models.Model):
 
 	number = models.IntegerField()
 	status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW)
-	
+
 	def __unicode__(self):
         return self.number
 
@@ -70,5 +70,5 @@ make test
 
 > **Coverage:** 82%
 
-> **Version:** 0.5.9
- 
+> **Version:** 0.6.0
+
