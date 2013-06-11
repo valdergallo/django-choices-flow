@@ -40,7 +40,5 @@ class ModelChoiceFlowTest(TestCase):
 
         invoice.status = MyChoices.WAIT
 
-        with self.assertRaises(exceptions.ValidationError):
-            # Raise ValidationError when validate status
-            invoice.full_clean()
-            invoice.save()
+        # Raise ValidationError when validate status
+        self.assertRaises(exceptions.ValidationError, lambda: invoice.full_clean())
