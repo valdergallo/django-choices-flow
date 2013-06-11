@@ -16,6 +16,14 @@ class ModelChoiceFlowTest(TestCase):
 
         self.assertTrue(MyModelInvoide.objects.count())
 
+    def test_status_invoice(self):
+        invoice = MyModelInvoide()
+        invoice.number = 1234
+        invoice.full_clean()
+        invoice.save()
+
+        self.assertEqual(invoice.status, 1)
+
     def test_flow_control(self):
         invoice = MyModelInvoide()
         invoice.number = 1234

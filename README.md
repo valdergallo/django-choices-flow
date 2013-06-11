@@ -48,6 +48,21 @@ class FlowInvoice(models.Model):
 	def __unicode__(self):
         return self.number
 
+
+
+>>> flow = FlowInvoice.objects.create(number=1234)
+>>> flow.status
+1
+>>> flow.status = MyChoices.INVOICED
+>>> flow.full_clean()
+>>> flow.save()
+>>> flow.status
+3
+>>> flow.status = MyChoices.WAIT
+>>> flow.full_clean()
+ValidationError: {'status': [u'2 is a invalid choice in this flow']}
+
+
 ```
 
 Developer
