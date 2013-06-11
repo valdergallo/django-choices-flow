@@ -3,6 +3,7 @@ django-choice-flow
 
 Meta Choice with simple flow and rules
 
+[![Build Status](https://travis-ci.org/valdergallo/django-choice-flow.png?branch=master)](https://travis-ci.org/valdergallo/django-choice-flow)
 
 Usage
 ======
