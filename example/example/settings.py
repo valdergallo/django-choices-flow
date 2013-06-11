@@ -149,6 +149,10 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_false': {
+        '()': 'django.utils.log.CallbackFilter',
+        'callback': lambda r: not DEBUG
         }
     },
     'handlers': {
