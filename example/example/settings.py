@@ -148,12 +148,9 @@ LOGGING = {
     'disable_existing_loggers': False,
     'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+            '()': 'django.utils.log.RequireDebugFalse',
+            'callback': lambda r: not DEBUG
         },
-        'require_debug_false': {
-        '()': 'django.utils.log.CallbackFilter',
-        'callback': lambda r: not DEBUG
-        }
     },
     'handlers': {
         'mail_admins': {
