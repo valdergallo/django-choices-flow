@@ -23,7 +23,7 @@ class TestChoices(TestCase):
     def setUp(self):
         self.choices = MyChoices
 
-    def test_key_valeu(self):
+    def test_key_value(self):
         self.assertEqual(self.choices.NEW, 1)
         self.assertEqual(self.choices.WAIT, 2)
         self.assertEqual(self.choices.CANCELED, -1)
