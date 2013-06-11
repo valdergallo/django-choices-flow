@@ -50,7 +50,7 @@ class FlowInvoice(models.Model):
         return self.number
 ```
 
-## Shell
+### Shell
 
 ```python
 >>> flow = FlowInvoice.objects.create(number=1234)
