@@ -8,7 +8,7 @@ import sys
 django_choices_flow_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
 sys.path.append(django_choices_flow_path)
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -149,7 +149,6 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse',
-            'callback': lambda r: not DEBUG
         },
     },
     'handlers': {
