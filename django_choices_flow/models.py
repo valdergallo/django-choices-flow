@@ -12,7 +12,6 @@ class FlowCharField(models.CharField):
 
     def __init__(self, *args, **kwargs):
         super(FlowCharField, self).__init__(*args, **kwargs)
-        self.db_index = True
         if not self.max_length:
             self.max_length = max([i[0] for i in self.choices])
 
@@ -34,7 +33,6 @@ class FlowCharField(models.CharField):
 class FlowIntegerField(models.IntegerField):
     def __init__(self, *args, **kwargs):
         super(FlowIntegerField, self).__init__(*args, **kwargs)
-        self.db_index = True
 
     @staticmethod
     def get_db_value(model_instance):
