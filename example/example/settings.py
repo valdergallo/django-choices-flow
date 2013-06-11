@@ -144,22 +144,21 @@ INSTALLED_APPS = (
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 
-def skip_unreadable_post(record):
+def skip_unreadable_post():
     return True
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
-        'skip_unreadable_posts': {
-           '()': 'django.utils.log.CallbackFilter',
-            'callback': skip_unreadable_post,
-        },
+        'special': {
+            '()': skip_unreadable_post,
+        }
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'filters': ['skip_unreadable_posts'],
+            'filters': ['special'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
