@@ -1,12 +1,12 @@
-django-choice-flow
+django-choices-flow
 ==================
 
 Meta Choice with simple flow and rules
 
 [![Build Status](https://travis-ci.org/valdergallo/django-choice-flow.png?branch=master)](https://travis-ci.org/valdergallo/django-choice-flow)
 
-Usage
-======
+## Usage
+
 
 ```python
 from django.db import models
@@ -50,8 +50,7 @@ class FlowInvoice(models.Model):
         return self.number
 ```
 
-Shell
-------
+## Shell
 
 ```python
 >>> flow = FlowInvoice.objects.create(number=1234)
@@ -67,8 +66,7 @@ Shell
 ValidationError: {'status': [u'2 is a invalid choice in this flow']}
 ```
 
-Developer
----------
+## Developer
 
 ```bash
 # download code
