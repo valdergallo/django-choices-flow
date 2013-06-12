@@ -42,7 +42,6 @@ class FlowInvoice(models.Model):
 	"""
 	To validate flow in choices
 	"""
-
 	number = models.IntegerField()
 	status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW)
 
@@ -83,7 +82,7 @@ make test
 ------------------------
 > **License type:** FREEBSD
 
-> **Coverage:** 92%
+> **Coverage:** 98%
 
 > **Version:** 0.6.1
 

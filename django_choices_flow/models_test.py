@@ -23,9 +23,6 @@ class MyIntegerInvoide(models.Model):
     status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW, db_index=True)
     number = models.IntegerField()
 
-    def __unicode__(self):
-        return self.number
-
 
 class MyCharChoices(Choices):
     NEW = 'NW', 'New'
@@ -43,6 +40,3 @@ class MyCharInvoide(models.Model):
                            default=MyCharChoices.NEW,
                            max_length=2, db_index=True)
     number = models.IntegerField()
-
-    def __unicode__(self):
-        return self.number
