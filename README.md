@@ -62,7 +62,7 @@ class FlowInvoice(models.Model):
 3
 >>> flow.status = MyChoices.WAIT
 >>> flow.full_clean()
-ValidationError: {'status': [u'2 is a invalid choice in this flow']}
+ValidationError: {'status': [u'Wait is a invalid choice in this flow']}
 ```
 
 ## Developer
@@ -84,6 +84,6 @@ make test
 
 > **Coverage:** 98%
 
-> **Version:** 0.6.1
+> **Version:** 0.6.2
 
 > **Tested in Django:** 1.2.7; 1.3.7; 1.4.5; 1.5.1
