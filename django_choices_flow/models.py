@@ -18,7 +18,7 @@ class FlowCharField(models.CharField):
         if model_instance.id:
             db_value = self.get_db_value(model_instance)
             if not self.choices.validate(getattr(db_value, self.name), value):
-                raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % value))
+                raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % self.choices.get_value(value)))
 
         super(FlowCharField, self).validate(value, model_instance)
 
@@ -35,6 +35,6 @@ class FlowIntegerField(models.IntegerField):
         if model_instance.id:
             db_value = self.get_db_value(model_instance)
             if not self.choices.validate(getattr(db_value, self.name), value):
-                raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % value))
+                raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % self.choices.get_value(value)))
 
         super(FlowIntegerField, self).validate(value, model_instance)

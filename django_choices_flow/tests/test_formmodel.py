@@ -45,7 +45,7 @@ class IntegerFormModelTest(TestCase):
         invoice = IntegerFormModel(data, instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'3 is a invalid choice in this flow']}, invoice.errors)
+        self.assertEqual(invoice.errors, {'status': [u'Invoiced is a invalid choice in this flow']}, invoice.errors)
 
     def test_valid_flow(self):
         invoice_instance = MyIntegerInvoide.objects.create(number=1234)
@@ -85,7 +85,7 @@ class CharFormModelTest(TestCase):
         invoice = CharFormModel(data, instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'IV is a invalid choice in this flow']}, invoice.errors)
+        self.assertEqual(invoice.errors, {'status': [u'Invoiced is a invalid choice in this flow']}, invoice.errors)
 
     def test_valid_flow(self):
         invoice_instance = MyCharInvoide.objects.create(number=1234)
