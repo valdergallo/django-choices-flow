@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
+import django_choices_flow
 
 install_requires = [
     'django>=1.2',
@@ -17,12 +18,14 @@ setup(name='django_choices_flow',
       long_description=('''Django Choices Flow simple library to control flow with choices in Django Model'''),
       classifiers=[
           'Framework :: Django',
+          'Programming Language :: Python',
           'Operating System :: OS Independent',
           'Topic :: Utilities'
       ],
-      version='0.6.2',
+      version=django_choices_flow.__version__,
       install_requires=install_requires,
-      exclude_package_data={'': ['django_choices_flow/models_test.py']},
-      packages=find_packages(exclude=['django_choices_flow.tests', 'django_choices_flow.models_test']),
-      package_data = {'': ['LICENSE', 'README.md']},
+      packages=find_packages(exclude=['django_choices_flow.model_test.py',
+                                      'django_choices_flow.model_test',
+                                      'django_choices_flow.*test.*',
+                                      'django_choices_flow.test']),
 )
