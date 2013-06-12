@@ -6,7 +6,7 @@ from django_choices_flow import Choices
 from django_choices_flow.models import FlowIntegerField, FlowCharField
 
 
-class MyChoices(Choices):
+class IntegerChoices(Choices):
     NEW = 1, 'New content'  # 'New content' is the display text
     WAIT = 2, 'Wait'
     CANCELED = -1, 'Canceled'
@@ -20,11 +20,11 @@ class MyChoices(Choices):
 
 
 class MyIntegerInvoide(models.Model):
-    status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW, db_index=True)
+    status = FlowIntegerField(choices=IntegerChoices, default=IntegerChoices.NEW, db_index=True)
     number = models.IntegerField()
 
 
-class MyCharChoices(Choices):
+class CharChoices(Choices):
     NEW = 'NW', 'New'
     WAIT = 'WT', 'Wait'
     CANCELED = 'CA', 'Canceled'
@@ -36,7 +36,7 @@ class MyCharChoices(Choices):
 
 
 class MyCharInvoide(models.Model):
-    status = FlowCharField(choices=MyCharChoices,
-                           default=MyCharChoices.NEW,
+    status = FlowCharField(choices=CharChoices,
+                           default=CharChoices.NEW,
                            max_length=2, db_index=True)
     number = models.IntegerField()

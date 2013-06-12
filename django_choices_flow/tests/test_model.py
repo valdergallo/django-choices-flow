@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from django.test import TestCase
-from django_choices_flow.models_test import MyIntegerInvoide, MyChoices, \
-    MyCharChoices, MyCharInvoide
+from django_choices_flow.models_test import MyIntegerInvoide, IntegerChoices, \
+    CharChoices, MyCharInvoide
 from django.core import exceptions
 
 
@@ -31,9 +31,9 @@ class FlowIntegerFieldTest(TestCase):
         invoice.full_clean()
         invoice.save()
 
-        self.assertEqual(invoice.status, MyChoices.NEW)
+        self.assertEqual(invoice.status, IntegerChoices.NEW)
 
-        invoice.status = MyChoices.INVOICED
+        invoice.status = IntegerChoices.INVOICED
 
         # Raise ValidationError when validate status
         self.assertRaises(exceptions.ValidationError, lambda: invoice.full_clean())
@@ -63,9 +63,9 @@ class FlowCharFieldTest(TestCase):
         invoice.full_clean()
         invoice.save()
 
-        self.assertEqual(invoice.status, MyCharChoices.NEW)
+        self.assertEqual(invoice.status, CharChoices.NEW)
 
-        invoice.status = MyCharChoices.INVOICED
+        invoice.status = CharChoices.INVOICED
 
         # Raise ValidationError when validate status
         self.assertRaises(exceptions.ValidationError, lambda: invoice.full_clean())
