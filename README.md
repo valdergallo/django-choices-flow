@@ -83,8 +83,8 @@ make test
 ------------------------
 > **License type:** FREEBSD
 
-> **Coverage:** 82%
+> **Coverage:** 92%
 
-> **Version:** 0.6.0
+> **Version:** 0.6.1
 
 > Tested in Django: 1.2.7; 1.3.7; 1.4.5; 1.5.1

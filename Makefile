@@ -6,5 +6,8 @@ setup:
 test:
 	python example/manage.py test django_choices_flow -v 2
 
+coverage:
+	python example/manage.py test django_choices_flow -v 2 --with-coverage
+
 clean:
 	find . -name '*.pyc' -delete
