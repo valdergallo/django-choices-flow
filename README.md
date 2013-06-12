@@ -86,4 +86,4 @@ make test
 
 > **Version:** 0.6.1
 
-> Tested in Django: 1.2.7; 1.3.7; 1.4.5; 1.5.1
+> **Tested in Django:** 1.2.7; 1.3.7; 1.4.5; 1.5.1
