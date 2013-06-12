@@ -3,7 +3,7 @@
 
 from django.db import models
 from django_choices_flow import Choices
-from django_choices_flow.models import FlowIntegerField
+from django_choices_flow.models import FlowIntegerField, FlowCharField
 
 
 class MyChoices(Choices):
@@ -14,13 +14,34 @@ class MyChoices(Choices):
     INVOICED = 3, 'Invoiced'
 
     # set transaction rules
-    NEW_RULES = [WAIT, INVOICED, CANCELED, ERROR]
+    NEW_RULES = [WAIT, CANCELED, ERROR]
     WAIT_RULES = [CANCELED, ERROR, INVOICED]
     INVOICED_RULES = [CANCELED]
 
 
-class MyModelInvoide(models.Model):
-    status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW)
+class MyIntegerInvoide(models.Model):
+    status = FlowIntegerField(choices=MyChoices, default=MyChoices.NEW, db_index=True)
+    number = models.IntegerField()
+
+    def __unicode__(self):
+        return self.number
+
+
+class MyCharChoices(Choices):
+    NEW = 'NW', 'New'
+    WAIT = 'WT', 'Wait'
+    CANCELED = 'CA', 'Canceled'
+    ERROR = 'ER', 'Error'
+    INVOICED = 'IV', 'Invoiced'
+
+    #set rules
+    NEW_RULES = [WAIT, CANCELED, ERROR]
+
+
+class MyCharInvoide(models.Model):
+    status = FlowCharField(choices=MyCharChoices,
+                           default=MyCharChoices.NEW,
+                           max_length=2, db_index=True)
     number = models.IntegerField()
 
     def __unicode__(self):

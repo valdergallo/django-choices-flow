@@ -2,22 +2,23 @@
 # -*- coding: utf-8 -*-
 
 from django.test import TestCase
-from django_choices_flow.models_test import MyModelInvoide, MyChoices
+from django_choices_flow.models_test import MyIntegerInvoide, MyChoices, \
+    MyCharChoices, MyCharInvoide
 from django.core import exceptions
 
 
-class ModelChoiceFlowTest(TestCase):
+class FlowIntegerFieldTest(TestCase):
 
     def test_create_invoice(self):
-        invoice = MyModelInvoide()
+        invoice = MyIntegerInvoide()
         invoice.number = 1234
         invoice.full_clean()
         invoice.save()
 
-        self.assertTrue(MyModelInvoide.objects.count())
+        self.assertTrue(MyIntegerInvoide.objects.count())
 
     def test_status_invoice(self):
-        invoice = MyModelInvoide()
+        invoice = MyIntegerInvoide()
         invoice.number = 1234
         invoice.full_clean()
         invoice.save()
@@ -25,7 +26,7 @@ class ModelChoiceFlowTest(TestCase):
         self.assertEqual(invoice.status, 1)
 
     def test_flow_control(self):
-        invoice = MyModelInvoide()
+        invoice = MyIntegerInvoide()
         invoice.number = 1234
         invoice.full_clean()
         invoice.save()
@@ -33,12 +34,38 @@ class ModelChoiceFlowTest(TestCase):
         self.assertEqual(invoice.status, MyChoices.NEW)
 
         invoice.status = MyChoices.INVOICED
+
+        # Raise ValidationError when validate status
+        self.assertRaises(exceptions.ValidationError, lambda: invoice.full_clean())
+
+
+class FlowCharFieldTest(TestCase):
+
+    def test_create_invoice(self):
+        invoice = MyCharInvoide()
+        invoice.number = 1234
         invoice.full_clean()
         invoice.save()
 
-        self.assertEqual(invoice.status, MyChoices.INVOICED)
+        self.assertTrue(MyCharInvoide.objects.count())
 
-        invoice.status = MyChoices.WAIT
+    def test_status_invoice(self):
+        invoice = MyCharInvoide()
+        invoice.number = 1234
+        invoice.full_clean()
+        invoice.save()
+
+        self.assertEqual(invoice.status, 'NW')
+
+    def test_flow_control(self):
+        invoice = MyCharInvoide()
+        invoice.number = 1234
+        invoice.full_clean()
+        invoice.save()
+
+        self.assertEqual(invoice.status, MyCharChoices.NEW)
+
+        invoice.status = MyCharChoices.INVOICED
 
         # Raise ValidationError when validate status
         self.assertRaises(exceptions.ValidationError, lambda: invoice.full_clean())
