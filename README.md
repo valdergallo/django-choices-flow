@@ -3,7 +3,7 @@ django-choices-flow
 
 Meta Choice with simple flow and rules
 
-[![Build Status](https://travis-ci.org/valdergallo/django-choice-flow.png?branch=master)](https://travis-ci.org/valdergallo/django-choice-flow)
+[![Build Status](https://travis-ci.org/valdergallo/django-choices-flow.png?branch=master)](https://travis-ci.org/valdergallo/django-choices-flow)
 
 ## Usage
 
@@ -69,7 +69,7 @@ ValidationError: {'status': [u'Wait is a invalid choice in this flow']}
 
 ```bash
 # download code
-git clone git@github.com:valdergallo/django-choice-flow.git
+git clone git@github.com:valdergallo/django-choices-flow.git
 
 # install developer packages
 make

@@ -11,7 +11,7 @@ install_requires = [
 ]
 
 setup(name='django_choices_flow',
-      url='https://github.com/valdergallo/django-choice-flow',
+      url='https://github.com/valdergallo/django-choices-flow',
       author="valdergallo",
       author_email='valdergallo@gmail.com',
       keywords='Django choices flow overflow',
