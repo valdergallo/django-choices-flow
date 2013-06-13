@@ -1,4 +1,5 @@
 include README.md LICENSE
 recursive-include django_choices_flow *.py
+exclude django_choices_flow/models_test.py
 global-exclude *test*
 global-exclude *.pyc
