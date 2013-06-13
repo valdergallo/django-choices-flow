@@ -1,10 +1,4 @@
-include README.md
-include MANIFEST.in
-include LICENSE
-include django_choices_flow/__init__.py
-include django_choices_flow/base.py
-include django_choices_flow/models.py
-exclude django_choices_flow/models_test.py
-global-exclude models_test.*
-global-exclude *test.*
+include README.md LICENSE
+recursive-include django_choices_flow *.py
+global-exclude *test*
 global-exclude *.pyc

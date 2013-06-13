@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 import django_choices_flow
-
-os.system('rm -rf ./build')
 
 install_requires = [
     'django>=1.2',
+]
+
+files = [
+    "./django_choices_flow/__init__.py",
+    "./django_choices_flow/base.py",
+    "./django_choices_flow/models.py",
 ]
 
 setup(name='django_choices_flow',
@@ -28,5 +32,5 @@ setup(name='django_choices_flow',
       version=django_choices_flow.__version__,
       install_requires=install_requires,
       packages=['django_choices_flow'],
-      exclude_package_data={'django_choices_flow': ['models_test.py']},
+      package_data={'package': files},
 )
