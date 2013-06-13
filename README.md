@@ -74,6 +74,9 @@ git clone git@github.com:valdergallo/django-choice-flow.git
 # install developer packages
 make
 
+# check coverage
+make coverage
+
 # test project
 make test
 ```
@@ -82,7 +85,7 @@ make test
 ------------------------
 > **License type:** FREEBSD
 
-> **Coverage:** 98%
+> **Coverage:** 99%
 
 > **Version:** 0.6.2
 
