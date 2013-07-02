@@ -38,3 +38,9 @@ class FlowIntegerField(models.IntegerField):
                 raise exceptions.ValidationError(_('%s is a invalid choice in this flow' % self.choices.get_value(value)))
 
         super(FlowIntegerField, self).validate(value, model_instance)
+
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^django_choices_flow\.models\.(FlowCharField|FlowIntegerField)"])
+except ImportError:
+    pass
