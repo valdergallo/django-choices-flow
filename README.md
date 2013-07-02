@@ -84,8 +84,10 @@ make test
 ------------------------
 > **License type:** FREEBSD
 
+> **South:** Support migrations
+
 > **Coverage:** 99%
 
-> **Version:** 0.6.2
+> **Version:** 0.6.5
 
 > **Tested in Django:** 1.2.7; 1.3.7; 1.4.5; 1.5.1
