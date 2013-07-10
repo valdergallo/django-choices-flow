@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
 
 
 class MetaChoice(type):
@@ -47,8 +48,12 @@ class MetaChoice(type):
         if not status:
             return new_status
 
-        if unicode(status) == unicode(new_status):
-            return new_status
+        if sys.version < '3':
+            if unicode(status) == unicode(new_status):
+                return new_status
+        else:
+            if str(status) == str(new_status):
+                return new_status
 
         if not cls._rules.get(status) or new_status not in cls._rules.get(status):
             return False
@@ -56,21 +61,44 @@ class MetaChoice(type):
         return new_status
 
 
-class Choices(object):
-    """
-    Usage:
+if sys.version < '3':
 
-    class MyChoices(Choices):
-        NEW = 1, 'New content' # 'New content' is the display text
-        WAIT = 2, 'Wait'
-        CANCELED = -1, 'Canceled'
-        ERROR = -2, 'Error'
-        INVOICED = 3, 'Invoiced'
+    class Choices(object):
+        """
+        Usage:
 
-        # set transaction rules
-        NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
-        WAIT_RULES = [CANCELED, ERROR, INVOICED]
-        INVOICED_RULES = [CANCELED]
+        class MyChoices(Choices):
+            NEW = 1, 'New content' # 'New content' is the display text
+            WAIT = 2, 'Wait'
+            CANCELED = -1, 'Canceled'
+            ERROR = -2, 'Error'
+            INVOICED = 3, 'Invoiced'
 
-    """
-    __metaclass__ = MetaChoice
+            # set transaction rules
+            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
+            WAIT_RULES = [CANCELED, ERROR, INVOICED]
+            INVOICED_RULES = [CANCELED]
+
+        """
+        __metaclass__ = MetaChoice
+
+else:
+
+    class Choices(metaclass=MetaChoice):
+        """
+        Usage:
+
+        class MyChoices(Choices):
+            NEW = 1, 'New content' # 'New content' is the display text
+            WAIT = 2, 'Wait'
+            CANCELED = -1, 'Canceled'
+            ERROR = -2, 'Error'
+            INVOICED = 3, 'Invoiced'
+
+            # set transaction rules
+            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
+            WAIT_RULES = [CANCELED, ERROR, INVOICED]
+            INVOICED_RULES = [CANCELED]
+
+        """
+
