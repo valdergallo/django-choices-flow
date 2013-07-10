@@ -78,6 +78,12 @@ make coverage
 
 # test project
 make test
+
+#clean extra content
+make clean
+
+#send package
+make send_package
 ```
 
 
