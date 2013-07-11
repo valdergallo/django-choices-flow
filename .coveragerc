@@ -1,3 +1,7 @@
+[run]
+source = django_choices_flow
+omit = */migrations/*
+
 [report]
 exclude_lines =
     pragma: no cover
