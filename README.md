@@ -4,6 +4,11 @@ django-choices-flow
 Meta Choice with simple flow and rules
 
 [![Build Status](https://travis-ci.org/valdergallo/django-choices-flow.png?branch=master)](https://travis-ci.org/valdergallo/django-choices-flow)
+
+
+[![Build Status](https://coveralls.io/r/valdergallo/django-choices-flow/badge.png?branch=master)](https://coveralls.io/r/valdergallo/django-choices-flow)
+
+
 ## Usage
 
 
@@ -95,8 +100,8 @@ tox
 
 > **South:** Support migrations
 
-> **Coverage:** 99%
+> **Python:** python 2.7 and python 3.3
 
-> **Version:** 0.6.5
+> **Version:** 0.8.0
 
 > **Tested in Django:** 1.2.7; 1.3.7; 1.4.5; 1.5.1
