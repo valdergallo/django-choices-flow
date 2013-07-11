@@ -4,10 +4,10 @@ setup:
 	pip install -r example/requirements.txt
 
 test:
-	python example/manage.py test django_choices_flow -v 2
+	python example/manage.py test django_choices_flow -v2
 
 coverage:
-	python example/manage.py test django_choices_flow -v 2 --with-coverage
+	python example/manage.py test django_choices_flow -v2 --with-coverage
 
 send_package:
 	python setup.py register sdist bdist upload
