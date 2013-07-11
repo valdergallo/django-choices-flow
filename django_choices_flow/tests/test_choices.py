@@ -6,11 +6,11 @@ from django_choices_flow import Choices
 
 
 class MyChoices(Choices):
-    NEW = 1, 'New content'  # 'New content' is the display text
-    WAIT = 2, 'Wait'
-    CANCELED = -1, 'Canceled'
-    ERROR = -2, 'Error'
-    INVOICED = 3, 'Invoiced'
+    NEW = (1, 'New content')  # 'New content' is the display text
+    WAIT = (2, 'Wait')
+    CANCELED = (-1, 'Canceled')
+    ERROR = (-2, 'Error')
+    INVOICED = (3, 'Invoiced')
 
     # set transaction rules
     NEW_RULES = [WAIT, INVOICED, CANCELED, ERROR]
@@ -34,12 +34,12 @@ class TestChoices(TestCase):
         self.assertEqual(len(self.choices), 5)
 
     def test_iter_list(self):
-        self.assertEquals(list(self.choices), [(-2, 'Error'), (-1, 'Canceled'),
-                          (3, 'Invoiced'), (1, 'New content'), (2, 'Wait')])
+        self.assertEquals(list(self.choices), [(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
+                          (1, 'New content'), (2, 'Wait')], self.choices)
 
     def test_repr_choice(self):
-        self.assertEqual(str(self.choices), str([(-2, 'Error'), (-1, 'Canceled'),
-                         (3, 'Invoiced'), (1, 'New content'), (2, 'Wait')]))
+        self.assertEqual(str(self.choices), str([(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
+                          (1, 'New content'), (2, 'Wait')]), self.choices)
 
     def test_get_value(self):
         self.assertEqual(self.choices.get_value(1), 'New content')
@@ -80,12 +80,12 @@ class TestChoicesSingle(TestCase):
         self.assertEqual(len(self.choices), 5)
 
     def test_iter_list(self):
-        self.assertEquals(list(self.choices), [(-2, 'ERROR'), (-1, 'CANCELED'),
-                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')])
+        self.assertEquals(list(self.choices), [(-1, 'CANCELED'), (-2, 'ERROR'),
+                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')], self.choices)
 
     def test_repr_choice(self):
-        self.assertEqual(str(self.choices), str([(-2, 'ERROR'), (-1, 'CANCELED'),
-                         (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')]))
+        self.assertEqual(str(self.choices), str([(-1, 'CANCELED'), (-2, 'ERROR'),
+                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')]), self.choices)
 
     def test_get_value(self):
         self.assertEqual(self.choices.get_value(1), 'NEW')

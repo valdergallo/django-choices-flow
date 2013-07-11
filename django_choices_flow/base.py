@@ -1,13 +1,32 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
 
 
 class MetaChoice(type):
+    """
+        Usage:
+
+        class MyChoices(Choices):
+            NEW = 1, 'New content' # 'New content' is the display text
+            WAIT = 2, 'Wait'
+            CANCELED = -1, 'Canceled'
+            ERROR = -2, 'Error'
+            INVOICED = 3, 'Invoiced'
+
+            # set transaction rules
+            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
+            WAIT_RULES = [CANCELED, ERROR, INVOICED]
+            INVOICED_RULES = [CANCELED]
+
+    """
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
+        # need sort to create same dict order in py2 and py3
+        items = sorted(cls.__dict__.items())
 
-        for name, value in cls.__dict__.items():
+        for name, value in items:
             if not name.startswith('_') and not callable(value):
                 if isinstance(value, tuple) and len(value) > 1:
                     data = value
@@ -47,30 +66,17 @@ class MetaChoice(type):
         if not status:
             return new_status
 
-        if unicode(status) == unicode(new_status):
-            return new_status
+        if sys.version < '3':
+            if unicode(status) == unicode(new_status):
+                return new_status
+        else:
+            if str(status) == str(new_status):
+                return new_status
 
         if not cls._rules.get(status) or new_status not in cls._rules.get(status):
             return False
 
         return new_status
 
-
-class Choices(object):
-    """
-    Usage:
-
-    class MyChoices(Choices):
-        NEW = 1, 'New content' # 'New content' is the display text
-        WAIT = 2, 'Wait'
-        CANCELED = -1, 'Canceled'
-        ERROR = -2, 'Error'
-        INVOICED = 3, 'Invoiced'
-
-        # set transaction rules
-        NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
-        WAIT_RULES = [CANCELED, ERROR, INVOICED]
-        INVOICED_RULES = [CANCELED]
-
-    """
-    __metaclass__ = MetaChoice
+# Using the metaclass in Python 2.x and 3.x
+Choices = MetaChoice('Choices', (object, ), {})
