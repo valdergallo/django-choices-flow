@@ -4,6 +4,22 @@ import sys
 
 
 class MetaChoice(type):
+    """
+        Usage:
+
+        class MyChoices(Choices):
+            NEW = 1, 'New content' # 'New content' is the display text
+            WAIT = 2, 'Wait'
+            CANCELED = -1, 'Canceled'
+            ERROR = -2, 'Error'
+            INVOICED = 3, 'Invoiced'
+
+            # set transaction rules
+            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
+            WAIT_RULES = [CANCELED, ERROR, INVOICED]
+            INVOICED_RULES = [CANCELED]
+
+    """
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
@@ -60,45 +76,5 @@ class MetaChoice(type):
 
         return new_status
 
-
-if sys.version < '3':
-
-    class Choices(object):
-        """
-        Usage:
-
-        class MyChoices(Choices):
-            NEW = 1, 'New content' # 'New content' is the display text
-            WAIT = 2, 'Wait'
-            CANCELED = -1, 'Canceled'
-            ERROR = -2, 'Error'
-            INVOICED = 3, 'Invoiced'
-
-            # set transaction rules
-            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
-            WAIT_RULES = [CANCELED, ERROR, INVOICED]
-            INVOICED_RULES = [CANCELED]
-
-        """
-        __metaclass__ = MetaChoice
-
-else:
-
-    class Choices(metaclass=MetaChoice):
-        """
-        Usage:
-
-        class MyChoices(Choices):
-            NEW = 1, 'New content' # 'New content' is the display text
-            WAIT = 2, 'Wait'
-            CANCELED = -1, 'Canceled'
-            ERROR = -2, 'Error'
-            INVOICED = 3, 'Invoiced'
-
-            # set transaction rules
-            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
-            WAIT_RULES = [CANCELED, ERROR, INVOICED]
-            INVOICED_RULES = [CANCELED]
-
-        """
-
+# Using the metaclass in Python 2.x and 3.x
+Choices = MetaChoice('Choices', (object, ), {})
