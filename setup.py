@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from setuptools import setup, find_packages
+
 import django_choices_flow
 
 install_requires = [
