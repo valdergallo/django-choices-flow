@@ -23,8 +23,10 @@ class MetaChoice(type):
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
+        # need sort to create same dict order in py2 and py3
+        items = sorted(cls.__dict__.items())
 
-        for name, value in cls.__dict__.items():
+        for name, value in items:
             if not name.startswith('_') and not callable(value):
                 if isinstance(value, tuple) and len(value) > 1:
                     data = value
