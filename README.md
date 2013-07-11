@@ -84,6 +84,9 @@ make clean
 
 #send package
 make send_package
+
+#test py2 and py3
+tox
 ```
 
 
