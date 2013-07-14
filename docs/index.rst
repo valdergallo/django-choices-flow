@@ -14,7 +14,8 @@ Welcome to Django Choices Flow's documentation contents
 
     intro/index
     intro/usage
-    choiceflow/base.rst
+    intro/developer
+    choiceflow/base
 
 
 Indices and tables
