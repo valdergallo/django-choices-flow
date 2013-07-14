@@ -10,7 +10,7 @@ SETTINGS_DJANGO_CHOICES_FLOW_ERROR_MESSAGE = hasattr(settings, 'DJANGO_CHOICES_F
 
 
 class FlowCharField(models.CharField):
-    "Custom CharField with workfowl validation"
+    "Custom CharField with workflow validation"
 
     @staticmethod
     def get_db_value(model_instance):
@@ -29,7 +29,7 @@ class FlowCharField(models.CharField):
 
 
 class FlowIntegerField(models.IntegerField):
-    "Custom IntegerField with workfowl validation"
+    "Custom IntegerField with workflow validation"
 
     @staticmethod
     def get_db_value(model_instance):
