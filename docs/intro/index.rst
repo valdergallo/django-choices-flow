@@ -3,7 +3,7 @@
 Overview
 ========
 
-    Meta Choice with simple flow and rules
+    Django Workflow using Choices
 
 Motivation
 ----------
