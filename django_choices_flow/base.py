@@ -5,25 +5,15 @@ import sys
 
 class MetaChoice(type):
     """
-        Usage:
-
-        class MyChoices(Choices):
-            NEW = 1, 'New content' # 'New content' is the display text
-            WAIT = 2, 'Wait'
-            CANCELED = -1, 'Canceled'
-            ERROR = -2, 'Error'
-            INVOICED = 3, 'Invoiced'
-
-            # set transaction rules
-            NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
-            WAIT_RULES = [CANCELED, ERROR, INVOICED]
-            INVOICED_RULES = [CANCELED]
-
+        - Convert attributes to Tuples
+        - Add interator in class attributes
+        - If attribute has _RULES add validations rules
     """
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
-        # need sort to create same dict order in py2 and py3
+
+        #: need **sorted** to create same dict order in py2 and py3
         items = sorted(cls.__dict__.items())
 
         for name, value in items:
@@ -63,6 +53,8 @@ class MetaChoice(type):
         return cls._hash.get(key)
 
     def validate(cls, status, new_status):
+        " Validate workflow "
+
         if not status:
             return new_status
 
@@ -78,5 +70,5 @@ class MetaChoice(type):
 
         return new_status
 
-# Using the metaclass in Python 2.x and 3.x
+#: Set metaclass in Python 2.x and 3.x
 Choices = MetaChoice('Choices', (object, ), {})
