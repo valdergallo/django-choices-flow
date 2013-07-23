@@ -1,3 +1,8 @@
+**Version:** 0.8.5
+- best performance for py3 and py2
+- add suporte for group-choices
+- fixed tests with py2 and py3
+
 **Version:** 0.8.0
 - suport for python3
 - settings with custom error message
