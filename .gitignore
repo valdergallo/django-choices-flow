@@ -27,9 +27,12 @@ pip-log.txt
 nosetests.xml
 cover/*.*
 example/cover/*.*
+_build/*.*
+_build
 
 # Translations
 *.mo
+.DS_Store
 
 # Mr Developer
 .mr.developer.cfg
