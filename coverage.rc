@@ -16,4 +16,3 @@ exclude_lines =
     def __len__
     __metaclass__
     def __init__
-    class MetaChoice
