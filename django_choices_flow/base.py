@@ -9,8 +9,7 @@ class MetaChoice(type):
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
-        #: need **sorted** to create same dict order in py2 and py3
-        items = sorted(cls.__dict__.items())
+        items = cls.__dict__.items()
         for name, value in items:
             cls._set_data(name, value)
         cls._hash = dict(cls._data)

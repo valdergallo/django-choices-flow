@@ -34,12 +34,14 @@ class TestChoices(TestCase):
         self.assertEqual(len(self.choices), 5)
 
     def test_iter_list(self):
-        self.assertEquals(list(self.choices), [(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
-                          (1, 'New content'), (2, 'Wait')], self.choices)
+        self.assertEquals(sorted(list(self.choices)),
+                          sorted([(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
+                          (1, 'New content'), (2, 'Wait')]), self.choices)
 
     def test_repr_choice(self):
-        self.assertEqual(str(self.choices), str([(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
-                          (1, 'New content'), (2, 'Wait')]), self.choices)
+        self.assertEqual(str(sorted(self.choices)),
+                         str(sorted([(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
+                          (1, 'New content'), (2, 'Wait')])), self.choices)
 
     def test_get_value(self):
         self.assertEqual(self.choices.get_value(1), 'New content')
@@ -80,12 +82,13 @@ class TestChoicesSingle(TestCase):
         self.assertEqual(len(self.choices), 5)
 
     def test_iter_list(self):
-        self.assertEquals(list(self.choices), [(-1, 'CANCELED'), (-2, 'ERROR'),
-                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')], self.choices)
+        self.assertEquals(sorted(list(self.choices)), sorted([(-1, 'CANCELED'), (-2, 'ERROR'),
+                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')]), self.choices)
 
     def test_repr_choice(self):
-        self.assertEqual(str(self.choices), str([(-1, 'CANCELED'), (-2, 'ERROR'),
-                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')]), self.choices)
+        self.assertEqual(str(sorted(self.choices)),
+                         str(sorted([(-1, 'CANCELED'), (-2, 'ERROR'),
+                          (3, 'INVOICED'), (1, 'NEW'), (2, 'WAIT')])), self.choices)
 
     def test_get_value(self):
         self.assertEqual(self.choices.get_value(1), 'NEW')
