@@ -1,43 +1,47 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-
 
 class MetaChoice(type):
     """
         - Convert attributes to Tuples
         - Add interator in class attributes
-        - If attribute has _RULES add validations rules
     """
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
-
         #: need **sorted** to create same dict order in py2 and py3
         items = sorted(cls.__dict__.items())
-
         for name, value in items:
-            if not name.startswith('_') and not callable(value):
-                if isinstance(value, tuple) and len(value) > 1:
-                    data = value
+            cls._set_data(name, value)
+        cls._hash = dict(cls._data)
+
+    def _set_data(cls, name, value, parent_name=None):
+        "Update tuplas to objects"
+        if not name.startswith('_') and not callable(value):
+            if isinstance(value, tuple) and len(value) > 1:
+                data = value
+            else:
+                data = (value, name)
+
+            if isinstance(value, list) and '_RULES' in name.upper():
+                cls._set_rules(name, value)
+            else:
+                cls._data.append(data)
+                if isinstance(data[0], tuple):
+                    setattr(cls, name, dict(data))
                 else:
-                    data = (value, name)
-
-                if isinstance(value, list) and '_RULES' in name.upper():
-                    updated_name = name.split('_')[0]
-                    value_key = getattr(cls, updated_name)
-
-                    if isinstance(value_key, tuple):
-                        value_key = value_key[0]
-
-                    values = [isinstance(i, tuple) and i[0] or i for i in value]
-                    cls._rules.update({value_key: values})
-
-                else:
-                    cls._data.append(data)
                     setattr(cls, name, data[0])
 
-        cls._hash = dict(cls._data)
+    def _set_rules(cls, name, value):
+        "If attribute has _RULES add validations rules"
+        updated_name = name.split('_')[0]
+        value_key = getattr(cls, updated_name)
+
+        if isinstance(value_key, tuple):
+            value_key = value_key[0]
+
+        values = [isinstance(i, tuple) and i[0] or i for i in value]
+        cls._rules.update({value_key: values})
 
     def __iter__(cls, *args, **kwds):
         for value, data in cls._data:
@@ -54,16 +58,11 @@ class MetaChoice(type):
 
     def validate(cls, status, new_status):
         " Validate workflow "
-
         if not status:
             return new_status
 
-        if sys.version < '3':
-            if unicode(status) == unicode(new_status):
-                return new_status
-        else:
-            if str(status) == str(new_status):
-                return new_status
+        if repr(status) == repr(new_status):
+            return new_status
 
         if not cls._rules.get(status) or new_status not in cls._rules.get(status):
             return False
