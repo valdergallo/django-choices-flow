@@ -28,37 +28,104 @@
         </ul>
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="django-choices-flow" class="anchor" href="#django-choices-flow"><span class="octicon octicon-link"></span></a>django-choices-flow</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Meta Choice with simple flow and rules</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p><a href="https://travis-ci.org/valdergallo/django-choices-flow"><img src="https://travis-ci.org/valdergallo/django-choices-flow.png?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/r/valdergallo/django-choices-flow"><img src="https://coveralls.io/repos/valdergallo/django-choices-flow/badge.png" alt="Coverage Status"></a></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django_choices_flow</span> <span class="kn">import</span> <span class="n">Choices</span>
+<span class="kn">from</span> <span class="nn">django_choices_flow.models</span> <span class="kn">import</span> <span class="n">FlowIntegerField</span>
+
+
+<span class="k">class</span> <span class="nc">MyChoices</span><span class="p">(</span><span class="n">Choices</span><span class="p">):</span>
+    <span class="n">NEW</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'New content'</span> <span class="c"># 'New content' is the display text</span>
+    <span class="n">WAIT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'Wait'</span>
+    <span class="n">CANCELED</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">'Canceled'</span>
+    <span class="n">ERROR</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s">'Error'</span>
+    <span class="n">INVOICED</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="s">'Invoiced'</span>
+
+    <span class="c"># set transaction rules</span>
+    <span class="n">NEW_RULES</span> <span class="o">=</span> <span class="p">[</span><span class="n">NEW</span><span class="p">,</span> <span class="n">INVOICED</span><span class="p">,</span> <span class="n">CANCELED</span><span class="p">,</span> <span class="n">ERROR</span><span class="p">]</span>
+    <span class="n">WAIT_RULES</span> <span class="o">=</span> <span class="p">[</span><span class="n">CANCELED</span><span class="p">,</span> <span class="n">ERROR</span><span class="p">,</span> <span class="n">INVOICED</span><span class="p">]</span>
+    <span class="n">INVOICED_RULES</span> <span class="o">=</span> <span class="p">[</span><span class="n">CANCELED</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Invoces</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    To use only choices</span>
+<span class="sd">    """</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">MyChoices</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">MyChoices</span><span class="o">.</span><span class="n">NEW</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span>
+
+
+<span class="k">class</span> <span class="nc">FlowInvoice</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    To validate flow in choices</span>
+<span class="sd">    """</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">FlowIntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">MyChoices</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">MyChoices</span><span class="o">.</span><span class="n">NEW</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span>
+</pre></div>
+
+<h3>
+<a name="shell" class="anchor" href="#shell"><span class="octicon octicon-link"></span></a>Shell</h3>
+
+<div class="highlight highlight-python"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span> <span class="o">=</span> <span class="n">FlowInvoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="mi">1234</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">status</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">MyChoices</span><span class="o">.</span><span class="n">INVOICED</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">full_clean</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">status</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">MyChoices</span><span class="o">.</span><span class="n">WAIT</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">flow</span><span class="o">.</span><span class="n">full_clean</span><span class="p">()</span>
+<span class="n">ValidationError</span><span class="p">:</span> <span class="p">{</span><span class="s">'status'</span><span class="p">:</span> <span class="p">[</span><span class="s">u'Wait is a invalid choice in this flow'</span><span class="p">]}</span>
+</pre></div>
+
+<h2>
+<a name="developer" class="anchor" href="#developer"><span class="octicon octicon-link"></span></a>Developer</h2>
+
+<div class="highlight highlight-bash"><pre><span class="c"># download code</span>
+git clone git@github.com:valdergallo/django-choices-flow.git
+
+<span class="c"># install developer packages</span>
+make
+
+<span class="c"># check coverage</span>
+make coverage
+
+<span class="c"># test project</span>
+make <span class="nb">test</span>
+
+<span class="c">#clean extra content</span>
+make clean
+
+<span class="c">#send package</span>
+make send_package
+
+<span class="c">#test py2 and py3</span>
+tox
+</pre></div>
+
+<hr><pre><code>License type: FREEBSD
+South: Support migrations
+Python: python 2.7 and python 3.3
+Version: 0.8.5
+Tested in Django: 1.2.7; 1.3.7; 1.4.5; 1.5.1
 </code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/valdergallo">valdergallo</a></p>
