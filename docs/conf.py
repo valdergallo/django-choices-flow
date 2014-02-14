@@ -347,10 +347,10 @@ from django.utils.encoding import force_unicode
 EXAMPLE_PATH = os.path.join(BASEDIR, '..', 'example')
 BASE_PATH = os.path.join(BASEDIR,  '..')
 
-print 'BASEDIR ', BASEDIR
-print 'BASE_PATH ', BASE_PATH
-print 'EXAMPLE_PATH ', EXAMPLE_PATH
-print '-'*80
+# print 'BASEDIR ', BASEDIR
+# print 'BASE_PATH ', BASE_PATH
+# print 'EXAMPLE_PATH ', EXAMPLE_PATH
+# print '-'*80
 
 sys.path.append(BASE_PATH)
 sys.path.append(EXAMPLE_PATH)
