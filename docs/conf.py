@@ -14,17 +14,20 @@
 import sys
 import os
 
+BASEDIR = os.path.join(os.path.dirname(__file__))
+# BASEDIR = '/Users/valdergallo/www/choices-pack/django-choice-flow/docs/'
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "_ext")))
+sys.path.append(os.path.join(BASEDIR, "_ext"))
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('./en/'))
-sys.path.insert(0, os.path.abspath('./pt-br/'))
+sys.path.insert(0, os.path.abspath('./locale/en/'))
+sys.path.insert(0, os.path.abspath('./locale/pt_BR/'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -323,6 +326,10 @@ epub_copyright = u'2013, Valder Gallo'
 # If false, no index is generated.
 #epub_use_index = True
 
+locale_dirs = ['locale/']   # path is example but recommended.
+gettext_compact = False     # optional.
+language = 'en, pt_BR'
+
 # --- Django configuration -------------------------------------------------
 
 import os
@@ -331,11 +338,13 @@ import inspect
 from django.utils.html import strip_tags
 from django.utils.encoding import force_unicode
 
-EXAMPLE_PATH = os.path.abspath(os.path.dirname(__file__) + '/../example/')
-BASE_PATH = os.path.abspath(os.path.dirname(__file__) + '/../')
+EXAMPLE_PATH = os.path.join(BASEDIR, '..', 'example')
+BASE_PATH = os.path.join(BASEDIR,  '..')
 
-print BASE_PATH
-print EXAMPLE_PATH
+print 'BASEDIR ', BASEDIR
+print 'BASE_PATH ', BASE_PATH
+print 'EXAMPLE_PATH ', EXAMPLE_PATH
+print '-'*80
 
 sys.path.append(BASE_PATH)
 sys.path.append(EXAMPLE_PATH)
