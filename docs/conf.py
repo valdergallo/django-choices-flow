@@ -335,7 +335,6 @@ epub_copyright = u'2013, Valder Gallo'
 
 locale_dirs = ['locale/']   # path is example but recommended.
 gettext_compact = False     # optional.
-language = 'en, pt_BR'
 
 # --- Django configuration -------------------------------------------------
 
