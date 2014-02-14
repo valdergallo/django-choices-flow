@@ -1,0 +1,68 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: django_choices_flow 0.8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-14 01:13-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../choiceflow/base.rst:4
+msgid "Descrição da Classe"
+msgstr ""
+
+#: ../../choiceflow/base.rst:11
+msgid "Base"
+msgstr ""
+
+#: ../../../django_choices_flow/base.pydocstring of
+#: django_choices_flow.base.Choices:1
+msgid "Define metaclass para Python 2.x e 3.x"
+msgstr ""
+
+#: ../../../django_choices_flow/base.pydocstring of
+#: django_choices_flow.base.MetaChoice:1
+msgid "Converte atributos da classe para tuplas"
+msgstr ""
+
+#: ../../../django_choices_flow/base.pydocstring of
+#: django_choices_flow.base.MetaChoice:2
+msgid "Adiciona interação nos atributos da classe"
+msgstr ""
+
+#: ../../../django_choices_flow/base.pydocstring of
+#: django_choices_flow.base.MetaChoice.validate:1
+msgid "Valida a lista de regras"
+msgstr ""
+
+#: ../../choiceflow/base.rst:17
+msgid "Modelos"
+msgstr ""
+
+#: ../../../django_choices_flow/models.pydocstring of
+#: django_choices_flow.models.FlowCharField:1
+msgid "CharField personalisado para validar o fluxo de regras"
+msgstr ""
+
+#: ../../../django_choices_flow/models.pydocstring of
+#: django_choices_flow.models.FlowCharField.get_db_value:1
+#: ../../../django_choices_flow/models.pydocstring of
+#: django_choices_flow.models.FlowIntegerField.get_db_value:1
+msgid "Pega o valor da base"
+msgstr ""
+
+#: ../../../django_choices_flow/models.pydocstring of
+#: django_choices_flow.models.FlowCharField.validate:1
+#: ../../../django_choices_flow/models.pydocstring of
+#: django_choices_flow.models.FlowIntegerField.validate:1
+msgid "Valida a escolha na o fluxo de regras"
+msgstr ""
+
+#: ../../../django_choices_flow/models.pydocstring of
+#: django_choices_flow.models.FlowIntegerField:1
+msgid "IntegerField personalisado para trabalhar com o fluxo de regras"
+msgstr ""

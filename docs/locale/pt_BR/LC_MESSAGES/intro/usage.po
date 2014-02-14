@@ -1,0 +1,24 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: django_choices_flow 0.8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-14 01:13-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../intro/usage.rst:4
+msgid "Usage"
+msgstr ""
+
+#: ../../intro/usage.rst:8
+msgid "Model example"
+msgstr ""
+
+#: ../../intro/usage.rst:53
+msgid "Shell example"
+msgstr ""

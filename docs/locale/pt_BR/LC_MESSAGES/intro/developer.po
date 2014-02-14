@@ -1,0 +1,56 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: django_choices_flow 0.8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-14 01:13-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../intro/developer.rst:4
+msgid "How to Contribute"
+msgstr ""
+
+#: ../../intro/developer.rst:7
+msgid "Issues and bugs"
+msgstr ""
+
+#: ../../intro/developer.rst:8
+msgid "To create issues or report bugs. Plase use Github :D"
+msgstr ""
+
+#: ../../intro/developer.rst:10
+msgid "https://github.com/valdergallo/django-choices-flow/issues"
+msgstr ""
+
+#: ../../intro/developer.rst:14
+msgid "Create my SandBox"
+msgstr ""
+
+#: ../../intro/developer.rst:42
+msgid "Support"
+msgstr ""
+
+#: ../../intro/developer.rst:44
+msgid "FREEBSD"
+msgstr ""
+
+#: ../../intro/developer.rst:45
+msgid "Support migrations"
+msgstr ""
+
+#: ../../intro/developer.rst:46
+msgid "python 2.7 and python 3.3"
+msgstr ""
+
+#: ../../intro/developer.rst:47
+msgid "0.8.5"
+msgstr ""
+
+#: ../../intro/developer.rst:48
+msgid "1.2.7; 1.3.7; 1.4.5; 1.5.1"
+msgstr ""

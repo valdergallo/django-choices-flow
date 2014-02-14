@@ -1,0 +1,38 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: django_choices_flow 0.8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-14 01:13-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../intro/index.rst:4
+msgid "Overview"
+msgstr ""
+
+#: ../../intro/index.rst:6
+msgid "Django Workflow using Choices"
+msgstr ""
+
+#: ../../intro/index.rst:9
+msgid "Motivation"
+msgstr ""
+
+#: ../../intro/index.rst:11
+msgid ""
+"We need one easy way to validate alot choices flow with Django. Sort of one "
+"status machine that can validate status for diferentes Models in diferentes "
+"APPs with diferents Flow."
+msgstr ""
+
+#: ../../intro/index.rst:15
+msgid ""
+"Some workflow program work with XML to create flow. XML is one another easy "
+"way, but I don't like the ideia to create and read XMLs. We need something "
+"with more performance, we have alot users."
+msgstr ""
