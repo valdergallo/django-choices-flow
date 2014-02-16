@@ -49,6 +49,38 @@ Model example
         def __unicode__(self):
             return self.number
 
+Set Error Message
+-----------------
+
+**CHANGE ALL MESSAGE**
+To change error message for all ChoiceFlow set nem messagem on **Django.settings**
+
+.. code-block:: python
+    :linenos:
+    DJANGO_CHOICES_FLOW_ERROR_MESSAGE = "My custom message error for all choices flow"
+
+
+**CHANGE ONLY ONE MESSAGE**
+To change error message only in one ChoiceFlow, set **error_msg** on ChoicesFlow
+
+.. code-block:: python
+    :linenos:
+
+    class MyChoices(Choices):
+        NEW = 1, 'New content' # 'New content' is the display text
+        WAIT = 2, 'Wait'
+        CANCELED = -1, 'Canceled'
+        ERROR = -2, 'Error'
+        INVOICED = 3, 'Invoiced'
+
+        # set transaction rules
+        NEW_RULES = [NEW, INVOICED, CANCELED, ERROR]
+        WAIT_RULES = [CANCELED, ERROR, INVOICED]
+        INVOICED_RULES = [CANCELED]
+
+        error_msg = "My Custom Error Message for this ChoicesFlow"
+
+
 Shell example
 -------------
 
