@@ -1,6 +1,6 @@
 **Version:** 0.9.0
 - Update default error message from Django settings
-- Add customer messagem on Choice using 'error_msg' as restric word
+- Add customer messagem on Choice using 'error_msg' as restrict word
 - add suport for django 1.6.x
 
 **Version:** 0.8.5
