@@ -1,5 +1,14 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+try:
+    from django.conf import settings
+except ImportError:
+    settings = None
+
+if hasattr(settings, 'DJANGO_CHOICES_FLOW_ERROR_MESSAGE'):
+    DEFAULT_DJANGO_CHOICES_FLOW_ERROR_MESSAGE = settings.DJANGO_CHOICES_FLOW_ERROR_MESSAGE
+else:
+    DEFAULT_DJANGO_CHOICES_FLOW_ERROR_MESSAGE = 'Invalid choice:'
+
 
 class MetaChoice(type):
     """
@@ -9,6 +18,8 @@ class MetaChoice(type):
     def __init__(cls, *args, **kwargs):
         cls._rules = {}
         cls._data = []
+        cls.__validate_msg = DEFAULT_DJANGO_CHOICES_FLOW_ERROR_MESSAGE
+
         items = cls.__dict__.items()
         for name, value in items:
             cls._set_data(name, value)
@@ -52,6 +63,16 @@ class MetaChoice(type):
     def __repr__(cls, *args, **kargs):
         return str(list(cls._data))
 
+    @property
+    def error_msg(cls):
+        "get default error message"
+        return cls.__validate_msg
+
+    @error_msg.setter
+    def error_msg(cls, value):
+        "set default error message for instance"
+        cls.__validate_msg = value
+
     def get_value(cls, key):
         return cls._hash.get(key)
 
@@ -63,7 +84,8 @@ class MetaChoice(type):
         if repr(status) == repr(new_status):
             return new_status
 
-        if not cls._rules.get(status) or new_status not in cls._rules.get(status):
+        if not cls._rules.get(status) or \
+            new_status not in cls._rules.get(status):
             return False
 
         return new_status

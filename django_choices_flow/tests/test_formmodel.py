@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
-from django_choices_flow.models_test import MyIntegerInvoide, MyCharInvoide, IntegerChoices, CharChoices
+from django_choices_flow.models_test import (MyIntegerInvoide, MyCharInvoide,
+                                             IntegerChoices, CharChoices,
+                                             CustomerErrorMsgChoices,
+                                             CustomerErrorMsgInvoide)
 from django.test import TestCase
 
 
@@ -14,6 +17,11 @@ class IntegerFormModel(ModelForm):
 class CharFormModel(ModelForm):
     class Meta:
         model = MyCharInvoide
+
+
+class CustomerErrorMsgChoicesFormModel(ModelForm):
+    class Meta:
+        model = CustomerErrorMsgInvoide
 
 
 class IntegerFormModelTest(TestCase):
@@ -45,7 +53,7 @@ class IntegerFormModelTest(TestCase):
         invoice = IntegerFormModel(data, instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'Invoiced is a invalid choice in this flow']}, invoice.errors)
+        self.assertEqual(invoice.errors, {'status': [u'Invalid choice: Invoiced']}, invoice.errors)
 
     def test_valid_flow(self):
         invoice_instance = MyIntegerInvoide.objects.create(number=1234)
@@ -85,7 +93,7 @@ class CharFormModelTest(TestCase):
         invoice = CharFormModel(data, instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'Invoiced is a invalid choice in this flow']}, invoice.errors)
+        self.assertEqual(invoice.errors, {'status': [u'Invalid choice: Invoiced']}, invoice.errors)
 
     def test_valid_flow(self):
         invoice_instance = MyCharInvoide.objects.create(number=1234)
@@ -94,3 +102,16 @@ class CharFormModelTest(TestCase):
         invoice = CharFormModel(data, instance=invoice_instance)
 
         self.assertTrue(invoice.is_valid())
+
+
+class CustomErrorMsgTest(TestCase):
+
+    def test_invalid_flow(self):
+        invoice_instance = CustomerErrorMsgInvoide.objects.create(number=1234)
+        data = {'status': CustomerErrorMsgChoices.INVOICED, 'number': 1234}
+
+        invoice = CustomerErrorMsgChoicesFormModel(data, instance=invoice_instance)
+
+        self.assertFalse(invoice.is_valid())
+        self.assertEqual(invoice.errors, {'status': [u'My Custom Error Message: Invoiced']}, invoice.errors)
+

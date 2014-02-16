@@ -4,9 +4,6 @@
 from django.core import exceptions
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
-
-SETTINGS_DJANGO_CHOICES_FLOW_ERROR_MESSAGE = hasattr(settings, 'DJANGO_CHOICES_FLOW_ERROR_MESSAGE') and settings.DJANGO_CHOICES_FLOW_ERROR_MESSAGE or 'is a invalid choice in this flow'
 
 
 class FlowCharField(models.CharField):
@@ -23,7 +20,8 @@ class FlowCharField(models.CharField):
         if model_instance.id:
             db_value = self.get_db_value(model_instance)
             if not self.choices.validate(getattr(db_value, self.name), value):
-                raise exceptions.ValidationError(_('%s %s' % (self.choices.get_value(value), SETTINGS_DJANGO_CHOICES_FLOW_ERROR_MESSAGE)))
+                raise exceptions.ValidationError(_('%s %s' % (self.choices.error_msg,
+                                                 self.choices.get_value(value))))
 
         super(FlowCharField, self).validate(value, model_instance)
 
@@ -42,7 +40,8 @@ class FlowIntegerField(models.IntegerField):
         if model_instance.id:
             db_value = self.get_db_value(model_instance)
             if not self.choices.validate(getattr(db_value, self.name), value):
-                raise exceptions.ValidationError(_('%s %s' % (self.choices.get_value(value), SETTINGS_DJANGO_CHOICES_FLOW_ERROR_MESSAGE)))
+                raise exceptions.ValidationError(_('%s %s' % (self.choices.error_msg,
+                                                 self.choices.get_value(value))))
 
         super(FlowIntegerField, self).validate(value, model_instance)
 

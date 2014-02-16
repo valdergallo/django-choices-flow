@@ -40,3 +40,23 @@ class MyCharInvoide(models.Model):
                            default=CharChoices.NEW,
                            max_length=2, db_index=True)
     number = models.IntegerField()
+
+
+class CustomerErrorMsgChoices(Choices):
+    NEW = 'NW', 'New'
+    WAIT = 'WT', 'Wait'
+    CANCELED = 'CA', 'Canceled'
+    ERROR = 'ER', 'Error'
+    INVOICED = 'IV', 'Invoiced'
+
+    #set rules
+    NEW_RULES = [WAIT, CANCELED, ERROR]
+
+    error_msg = "My Custom Error Message:"
+
+
+class CustomerErrorMsgInvoide(models.Model):
+    status = FlowCharField(choices=CustomerErrorMsgChoices,
+                           default=CustomerErrorMsgChoices.NEW,
+                           max_length=2, db_index=True)
+    number = models.IntegerField()
