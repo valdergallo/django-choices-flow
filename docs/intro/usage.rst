@@ -53,6 +53,7 @@ Set Error Message
 -----------------
 
 **CHANGE ALL MESSAGE**
+
 To change error message for all ChoiceFlow set nem messagem on **Django.settings**
 
 .. code-block:: python
@@ -61,6 +62,7 @@ To change error message for all ChoiceFlow set nem messagem on **Django.settings
 
 
 **CHANGE ONLY ONE MESSAGE**
+
 To change error message only in one ChoiceFlow, set **error_msg** on ChoicesFlow
 
 .. code-block:: python
