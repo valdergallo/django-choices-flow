@@ -354,7 +354,4 @@ BASE_PATH = os.path.join(BASEDIR,  '..')
 
 sys.path.append(BASE_PATH)
 sys.path.append(EXAMPLE_PATH)
-
-from example import settings
-from django.core.management import setup_environ
-setup_environ(settings)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "example.settings")
