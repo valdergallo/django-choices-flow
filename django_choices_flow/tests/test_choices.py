@@ -11,6 +11,7 @@ class MyChoices(Choices):
     CANCELED = (-1, 'Canceled')
     ERROR = (-2, 'Error')
     INVOICED = (3, 'Invoiced')
+    INVOICED_VALIDATION_NAME = (4, 'Invoiced Validation Name')
 
     # set transaction rules
     NEW_RULES = [WAIT, INVOICED, CANCELED, ERROR]
@@ -31,17 +32,17 @@ class TestChoices(TestCase):
         self.assertEqual(self.choices.INVOICED, 3)
 
     def test_len_choices(self):
-        self.assertEqual(len(self.choices), 5)
+        self.assertEqual(len(self.choices), 6)
 
     def test_iter_list(self):
         self.assertEquals(sorted(list(self.choices)),
                           sorted([(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
-                          (1, 'New content'), (2, 'Wait')]), self.choices)
+                          (1, 'New content'), (2, 'Wait'), (4, 'Invoiced Validation Name')]), self.choices)
 
     def test_repr_choice(self):
         self.assertEqual(str(sorted(self.choices)),
                          str(sorted([(-1, 'Canceled'), (-2, 'Error'), (3, 'Invoiced'),
-                          (1, 'New content'), (2, 'Wait')])), self.choices)
+                          (1, 'New content'), (2, 'Wait'), (4, 'Invoiced Validation Name')])), self.choices)
 
     def test_get_value(self):
         self.assertEqual(self.choices.get_value(1), 'New content')

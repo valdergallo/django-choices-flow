@@ -44,7 +44,7 @@ class MetaChoice(type):
 
     def _set_rules(cls, name, value):
         "If attribute has _RULES add validations rules"
-        updated_name = name.split('_')[0]
+        updated_name = name.rsplit('_', 1)[0]
         value_key = getattr(cls, updated_name)
 
         if isinstance(value_key, tuple):
