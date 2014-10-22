@@ -96,5 +96,5 @@ tox
     License type: FREEBSD
     South: Support migrations
     Python: python 2.7 and python 3.3
-    Version: 0.9.0
-    Tested in Django: 1.2.7; 1.3.7; 1.4.5; 1.5.1; 1.6.2
+    Version: 0.9.2
+    Tested in Django: 1.2.x; 1.3.x; 1.4.x; 1.5.x; 1.6.x; 1.7.x
