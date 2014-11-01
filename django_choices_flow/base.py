@@ -23,7 +23,10 @@ class MetaChoice(type):
         items = cls.__dict__.items()
         for name, value in items:
             cls._set_data(name, value)
-        cls._hash = dict(cls._data)
+            try:
+                cls._hash = dict(cls._data)
+            except TypeError:
+                raise TypeError('Invalid Choice: %s' % cls._data)
 
     def _set_data(cls, name, value, parent_name=None):
         "Update tuplas to objects"
