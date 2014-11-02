@@ -5,7 +5,7 @@ Meta Choice with simple flow and rules
 
 [![Build Status](https://travis-ci.org/valdergallo/django-choices-flow.png?branch=master)](https://travis-ci.org/valdergallo/django-choices-flow)
 [![Coverage Status](https://coveralls.io/repos/valdergallo/django-choices-flow/badge.png)](https://coveralls.io/r/valdergallo/django-choices-flow)
-[![PyPI Downloads] (https://pypip.in/d/django-choices-flow/badge.png)](https://pypip.in/d/django-choices-flow/badge.png)
+[![PyPI Downloads] (https://pypip.in/d/django-choices-flow/badge.png)](https://pypi.python.org/pypi/django_choices_flow)
 
 
 ## Usage
