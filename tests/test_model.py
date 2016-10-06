@@ -1,8 +1,7 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.test import TestCase
-from django_choices_flow.models_test import MyIntegerInvoide, IntegerChoices, \
+from example.models import MyIntegerInvoide, IntegerChoices, \
     CharChoices, MyCharInvoide
 from django.core import exceptions
 

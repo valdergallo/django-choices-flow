@@ -1,13 +1,33 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import os
+import sys
 from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
 
 import django_choices_flow
 
 install_requires = [
     'django>=1.2',
 ]
+
+tests_requires = [
+    'pytest==3.0.2',
+    'pytest-django==2.9.1',
+    'pytest-cov==2.3.1',
+]
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['tests', '--cov=django_choices_flow', '-vrsx']
+        self.test_suite = True
+
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
+
 
 def readme():
     try:
@@ -44,6 +64,10 @@ setup(name='django_choices_flow',
       include_package_data=True,
       version=django_choices_flow.__version__,
       install_requires=install_requires,
+      tests_require=tests_requires,
+      cmdclass = {'test': PyTest},
       packages=['django_choices_flow'],
       package_data={'package': files},
+      zip_safe=False,
+      platforms='any',
 )

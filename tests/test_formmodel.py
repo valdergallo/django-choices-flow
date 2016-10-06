@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
-from django_choices_flow.models_test import (MyIntegerInvoide, MyCharInvoide,
-                                             IntegerChoices, CharChoices,
-                                             CustomerErrorMsgChoices,
-                                             CustomerErrorMsgInvoide)
+from example.models import (MyIntegerInvoide, MyCharInvoide,
+                             IntegerChoices, CharChoices,
+                             CustomerErrorMsgChoices,
+                             CustomerErrorMsgInvoide)
 from django.test import TestCase
 
 
