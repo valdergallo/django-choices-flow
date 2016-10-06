@@ -1,14 +1,18 @@
 language: python
 python:
   - 2.7
-script: make coverage
+  - 3.4
+script: python setup.py test
 env:
   - DJANGO=1.4
   - DJANGO=1.5
   - DJANGO=1.6
   - DJANGO=1.7
+  - DJANGO=1.8
+  - DJANGO=1.9
+  - DJANGO=1.10
 install:
-  - pip install -q Django==$DJANGO -r example/requirements-travis.txt
+  - pip install -q Django==$DJANGO -r requirements.txt
 branches:
   only:
     - master
