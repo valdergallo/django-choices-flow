@@ -19,7 +19,9 @@ class IntegerChoices(Choices):
 
 
 class MyIntegerInvoide(models.Model):
-    status = FlowIntegerField(choices=IntegerChoices, default=IntegerChoices.NEW, db_index=True)
+    status = FlowIntegerField(choices=IntegerChoices,
+                              default=IntegerChoices.NEW,
+                              db_index=True)
     number = models.IntegerField()
 
 
@@ -30,7 +32,7 @@ class CharChoices(Choices):
     ERROR = 'ER', 'Error'
     INVOICED = 'IV', 'Invoiced'
 
-    #set rules
+    # set rules
     NEW_RULES = [WAIT, CANCELED, ERROR]
 
 
@@ -48,7 +50,7 @@ class CustomerErrorMsgChoices(Choices):
     ERROR = 'ER', 'Error'
     INVOICED = 'IV', 'Invoiced'
 
-    #set rules
+    # set rules
     NEW_RULES = [WAIT, CANCELED, ERROR]
 
     error_msg = "My Custom Error Message:"

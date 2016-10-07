@@ -38,3 +38,5 @@ _build
 .mr.developer.cfg
 .project
 .pydevproject
+.cache
+.eggs

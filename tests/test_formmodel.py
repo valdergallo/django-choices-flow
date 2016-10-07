@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm
-from example.models import (MyIntegerInvoide, MyCharInvoide,
-                             IntegerChoices, CharChoices,
-                             CustomerErrorMsgChoices,
-                             CustomerErrorMsgInvoide)
 from django.test import TestCase
+from example.models import (MyIntegerInvoide,
+                            MyCharInvoide,
+                            IntegerChoices,
+                            CharChoices,
+                            CustomerErrorMsgChoices,
+                            CustomerErrorMsgInvoide)
 
 
 class IntegerFormModel(ModelForm):
@@ -37,13 +39,17 @@ class IntegerFormModelTest(TestCase):
         data = {'status': 1}
         invoice = IntegerFormModel(data)
         self.assertFalse(invoice.is_valid(), invoice.errors)
-        self.assertEqual(invoice.errors, {'number': [u'This field is required.']}, invoice.errors)
+        self.assertEqual(invoice.errors,
+                         {'number': [u'This field is required.']},
+                         invoice.errors)
 
     def test_status_error(self):
         data = {'number': 2}
         invoice = IntegerFormModel(data)
         self.assertFalse(invoice.is_valid(), invoice.errors)
-        self.assertEqual(invoice.errors, {'status': [u'This field is required.']}, invoice.errors)
+        self.assertEqual(invoice.errors,
+                         {'status': [u'This field is required.']},
+                         invoice.errors)
 
     def test_invalid_flow(self):
         invoice_instance = MyIntegerInvoide.objects.create(number=1234)
@@ -52,7 +58,9 @@ class IntegerFormModelTest(TestCase):
         invoice = IntegerFormModel(data, instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'Invalid choice: Invoiced']}, invoice.errors)
+        self.assertEqual(invoice.errors,
+                         {'status': [u'Invalid choice: Invoiced']},
+                         invoice.errors)
 
     def test_valid_flow(self):
         invoice_instance = MyIntegerInvoide.objects.create(number=1234)
@@ -77,13 +85,17 @@ class CharFormModelTest(TestCase):
         data = {'status': 'NW'}
         invoice = CharFormModel(data)
         self.assertFalse(invoice.is_valid(), invoice.errors)
-        self.assertEqual(invoice.errors, {'number': [u'This field is required.']}, invoice.errors)
+        self.assertEqual(invoice.errors,
+                         {'number': [u'This field is required.']},
+                         invoice.errors)
 
     def test_status_error(self):
         data = {'number': 2}
         invoice = CharFormModel(data)
         self.assertFalse(invoice.is_valid(), invoice.errors)
-        self.assertEqual(invoice.errors, {'status': [u'This field is required.']}, invoice.errors)
+        self.assertEqual(invoice.errors,
+                         {'status': [u'This field is required.']},
+                         invoice.errors)
 
     def test_invalid_flow(self):
         invoice_instance = MyCharInvoide.objects.create(number=1234)
@@ -92,7 +104,9 @@ class CharFormModelTest(TestCase):
         invoice = CharFormModel(data, instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'Invalid choice: Invoiced']}, invoice.errors)
+        self.assertEqual(invoice.errors,
+                         {'status': [u'Invalid choice: Invoiced']},
+                         invoice.errors)
 
     def test_valid_flow(self):
         invoice_instance = MyCharInvoide.objects.create(number=1234)
@@ -109,8 +123,10 @@ class CustomErrorMsgTest(TestCase):
         invoice_instance = CustomerErrorMsgInvoide.objects.create(number=1234)
         data = {'status': CustomerErrorMsgChoices.INVOICED, 'number': 1234}
 
-        invoice = CustomerErrorMsgChoicesFormModel(data, instance=invoice_instance)
+        invoice = CustomerErrorMsgChoicesFormModel(data,
+                                                   instance=invoice_instance)
 
         self.assertFalse(invoice.is_valid())
-        self.assertEqual(invoice.errors, {'status': [u'My Custom Error Message: Invoiced']}, invoice.errors)
-
+        self.assertEqual(invoice.errors,
+                         {'status': [u'My Custom Error Message: Invoiced']},
+                         invoice.errors)

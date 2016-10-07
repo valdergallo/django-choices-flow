@@ -3,7 +3,9 @@ django-choices-flow
 
 Meta Choice with simple flow and rules
 
-|Build Status| |Coverage Status|
+|Build Status| |Latest Version| |Coverage Status| |BSD License| `[PyPI
+Downloads]
+(http://img.shields.io/pypi/dm/django-choices-flow.svg) <https://pypi.python.org/pypi/django_choices_flow>`__
 
 Usage
 -----
@@ -96,13 +98,15 @@ Developer
 
 ::
 
-    License type: FREEBSD
     South: Support migrations
     Python: python 2.7 and python 3.3
-    Version: 0.9.2
     Tested in Django: 1.2.x; 1.3.x; 1.4.x; 1.5.x; 1.6.x; 1.7.x
 
 .. |Build Status| image:: https://travis-ci.org/valdergallo/django-choices-flow.png?branch=master
    :target: https://travis-ci.org/valdergallo/django-choices-flow
+.. |Latest Version| image:: http://img.shields.io/pypi/v/django-choices-flow.svg
+   :target: https://pypi.python.org/pypi/django-choices-flow
 .. |Coverage Status| image:: https://coveralls.io/repos/valdergallo/django-choices-flow/badge.png
    :target: https://coveralls.io/r/valdergallo/django-choices-flow
+.. |BSD License| image:: http://img.shields.io/badge/license-BSD-yellow.svg
+   :target: http://opensource.org/licenses/BSD-3-Clause

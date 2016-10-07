@@ -1,9 +1,9 @@
 SECRET_KEY = 1
 
 INSTALLED_APPS = (
+    'django_choices_flow',
     'example',
     'tests',
-    'django_choices_flow',
 )
 
 DATABASES = {
