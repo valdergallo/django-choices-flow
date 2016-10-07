@@ -13,16 +13,19 @@ from example.models import (MyIntegerInvoide,
 class IntegerFormModel(ModelForm):
     class Meta:
         model = MyIntegerInvoide
+        fields = ('status', 'number')
 
 
 class CharFormModel(ModelForm):
     class Meta:
         model = MyCharInvoide
+        fields = ('status', 'number')
 
 
 class CustomerErrorMsgChoicesFormModel(ModelForm):
     class Meta:
         model = CustomerErrorMsgInvoide
+        fields = ('status', 'number')
 
 
 class IntegerFormModelTest(TestCase):
