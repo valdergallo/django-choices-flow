@@ -7,7 +7,7 @@ Meta Choice with simple flow and rules
 [![Latest Version](http://img.shields.io/pypi/v/django-choices-flow.svg)](https://pypi.python.org/pypi/django-choices-flow)
 [![Coverage Status](https://coveralls.io/repos/valdergallo/django-choices-flow/badge.png)](https://coveralls.io/r/valdergallo/django-choices-flow)
 [![BSD License](http://img.shields.io/badge/license-BSD-yellow.svg)](http://opensource.org/licenses/BSD-3-Clause)
-[![PyPI Downloads] (http://img.shields.io/pypi/dm/django-choices-flow.svg)](https://pypi.python.org/pypi/django_choices_flow)
+[![PyPI Downloads](http://img.shields.io/pypi/dm/django-choices-flow.svg)](https://pypi.python.org/pypi/django_choices_flow)
 
 
 ## Usage
